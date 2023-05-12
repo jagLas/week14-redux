@@ -6,8 +6,6 @@ function ProduceDetails({ produce }) {
 
   const cartItem = {};
 
-  console.log(produce)
-
   return (
     <li className="produce-details">
       <span>{produce.name}</span>
