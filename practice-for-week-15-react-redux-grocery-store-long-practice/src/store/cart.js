@@ -1,5 +1,7 @@
-const ADD_TO_CART = 'cart/ADD_TO_CART'
-const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART'
+const ADD_TO_CART = 'cart/ADD_TO_CART';
+const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART';
+const SUBTRACT_FROM_CART = 'cart/SUBTRACT_FROM_CART';
+const SET_CART_QTY = 'cart/SET_CART_QTY';
 
 export const addToCart = (id) => {
     return {
@@ -15,11 +17,24 @@ export const removeFromCart = (id) => {
     }
 }
 
+export const subtractFromCart = (id) => {
+    return {
+        type: SUBTRACT_FROM_CART,
+        id
+    }
+}
+
+export const setCartQty = (id, qty) => {
+    return {
+        type: SET_CART_QTY,
+        payload: {id, qty}
+    }
+}
+
 function cartReducer (state={}, action) {
     switch (action.type) {
         case ADD_TO_CART: {
             const cartItem = state[action.id];
-            // debugger
             let count;
             if (cartItem) {
                 count = cartItem.count + 1;
@@ -39,6 +54,35 @@ function cartReducer (state={}, action) {
         case REMOVE_FROM_CART:{
             const newState = {...state};
             delete newState[action.id];
+            return newState;
+        }
+        case SUBTRACT_FROM_CART: {
+            const newState = {
+                ...state,
+            }
+
+            const cartItem = state[action.id];
+            const count = cartItem.count - 1;
+
+            if (count === 0 ) {
+                delete newState[action.id]
+                return newState;
+            }
+
+            const newKey = {
+                id: action.id,
+                count
+            };
+
+            newState[action.id] = newKey;
+            return newState;
+        }
+        case SET_CART_QTY: {
+            const newState = {...state}
+            newState[action.payload.id].count = action.payload.qty;
+            if (action.payload.qty <= 0) {
+                delete newState[action.payload.id]
+            }
             return newState;
         }
         default:
