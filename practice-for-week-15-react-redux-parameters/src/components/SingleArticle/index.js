@@ -1,21 +1,28 @@
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import './SingleArticle.css';
+import { useEffect, useState } from 'react';
 
 const SingleArticle = ({articles}) => {
   const {id} = useParams()
-  const {title, imageUrl, body} = articles.find(article => {
-    return article.id === id
-  })
+  const [article, setArticle ] = useState({title:'', imageUrl: '', body: ''});
+
+  useEffect(() => {
+    const article = articles.find(article => {
+      return article.id === id
+    })
+    if(article) setArticle(article);
+  },[articles, id])
+
 
   return (
     <div className='singleArticle'>
-      <h1>{title}</h1>
+      <h1>{article.title}</h1>
       <img
-        src={imageUrl}
+        src={article.imageUrl}
         alt='home'
       />
       <p>
-        {body}
+        {article.body}
       </p>
     </div>
   );
