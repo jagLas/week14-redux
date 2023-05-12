@@ -1,20 +1,21 @@
 import CartItem from './CartItem';
 import './Cart.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart } from '../../store/cart';
+import { getAllCartItems, removeFromCart } from '../../store/cart';
 
 function Cart() {
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart);
   const produce = useSelector(state => state.produce);
 
-  const cartItems = Object.values(cart)
+  const cartItems = useSelector(getAllCartItems)
     .map(item => {
       return {
         ...item,
         ...produce[item.id]
       };
     });
+
+  console.log(cartItems)
 
   if (!cartItems || !cartItems.length) return (
     <div className="cart">
@@ -28,9 +29,8 @@ function Cart() {
       "Purchased the following:\n" +
       `${cartItems.map(item => `${item.count} of ${item.name}`).join('\n')}`
     );
-    for (const itemId in cart) {
-      dispatch(removeFromCart(itemId))
-    }
+
+    cartItems.forEach(item => dispatch(removeFromCart(item.id)))
   }
 
   return (

@@ -90,6 +90,6 @@ function cartReducer (state={}, action) {
     };
 };
 
-export const getAllCartItems = (state) => Object.keys(state.cart)
+export const getAllCartItems = (state) => Object.values(state.cart)
 
 export default cartReducer;
