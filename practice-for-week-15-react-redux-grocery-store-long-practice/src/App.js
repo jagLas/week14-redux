@@ -2,16 +2,26 @@ import { useEffect, useState } from 'react';
 import Cart from './components/Cart';
 import ProduceList from './components/ProduceList';
 import { populateProduce } from './store/produce';
-import { useDispatch } from 'react-redux';
-// import { addToCart } from './store/cart';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCartItems } from './store/cart';
+
 
 function App() {
   const [showCart, setShowCart] = useState(false);
+  const cartItems = useSelector(getAllCartItems)
   
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(populateProduce());
   }, [dispatch])
+
+  useEffect(() => {
+    console.log(cartItems.length)
+    if (cartItems.length > 0) {
+      setShowCart(true);
+    }
+
+  },[cartItems])
 
   return (
     <>

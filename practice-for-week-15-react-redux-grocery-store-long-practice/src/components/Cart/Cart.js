@@ -2,8 +2,13 @@ import CartItem from './CartItem';
 import './Cart.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCartItems, removeFromCart } from '../../store/cart';
+import { useEffect } from 'react';
 
 function Cart() {
+//  useEffect(() => {
+
+//  }, [cartItems])
+
   const dispatch = useDispatch();
 
   const cartItems = useSelector(getAllCartItems)
