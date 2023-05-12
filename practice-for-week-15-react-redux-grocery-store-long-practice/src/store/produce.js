@@ -16,7 +16,7 @@ function produceReducer (state = {}, action ){
             action.produce.forEach(produce => {
                 nextState[produce.id] = {...produce}
             })
-            return nextState
+            return nextState;
         default:
             return state;
     }

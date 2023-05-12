@@ -3,6 +3,7 @@ import Cart from './components/Cart';
 import ProduceList from './components/ProduceList';
 import { populateProduce } from './store/produce';
 import { useDispatch } from 'react-redux';
+// import { addToCart } from './store/cart';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
