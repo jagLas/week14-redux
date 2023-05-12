@@ -5,17 +5,8 @@ import { getAllCartItems, removeFromCart } from '../../store/cart';
 
 function Cart() {
   const dispatch = useDispatch();
-  const produce = useSelector(state => state.produce);
 
   const cartItems = useSelector(getAllCartItems)
-    .map(item => {
-      return {
-        ...item,
-        ...produce[item.id]
-      };
-    });
-
-  console.log(cartItems)
 
   if (!cartItems || !cartItems.length) return (
     <div className="cart">
