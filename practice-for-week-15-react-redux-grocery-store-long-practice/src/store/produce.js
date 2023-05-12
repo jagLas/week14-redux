@@ -40,4 +40,6 @@ function produceReducer (state = {}, action ){
     }
 }
 
+export const getAllProduce = (state) => Object.values(state.produce)
+
 export default produceReducer;
