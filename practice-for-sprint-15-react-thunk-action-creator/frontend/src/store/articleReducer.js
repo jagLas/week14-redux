@@ -1,9 +1,9 @@
-import articles from '../data/data.json';
+// import articles from '../data/data.json';
 
 const LOAD_ARTICLES = 'article/loadArticles';
 const ADD_ARTICLE = 'article/addArticle';
 
-export const loadArticles = () => {
+export const loadArticles = (articles) => {
   return {
     type: LOAD_ARTICLES,
     articles
@@ -16,6 +16,14 @@ export const addArticle = (article) => {
     article
   };
 };
+
+export const fetchArticles = () => async dispatch => {
+  const response = await fetch('/api/articles');
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(loadArticles(data))
+  }
+}
 
 const initialState = { entries: [], isLoading: true };
 
