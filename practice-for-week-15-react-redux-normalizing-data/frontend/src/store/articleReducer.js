@@ -18,7 +18,13 @@ export const addArticle = (article) => {
 export const fetchArticles = () => async (dispatch) => {
   const response = await fetch('/api/articles');
   const articles = await response.json();
-  dispatch(loadArticles(articles));
+  const normalalizedArticles = {
+  }
+  articles.forEach(article=> {
+    normalalizedArticles[article.id] = article;
+  })
+
+  dispatch(loadArticles(normalalizedArticles));
 };
 
 export const writeArticle = (payload) => async (dispatch) => {
@@ -36,14 +42,14 @@ export const writeArticle = (payload) => async (dispatch) => {
   }
 };
 
-const initialState = { entries: [], isLoading: true };
+const initialState = { entries: {}, isLoading: true };
 
 const articleReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ARTICLES:
-      return { ...state, entries: [...action.articles] };
+      return { ...state, entries: {...action.articles} };
     case ADD_ARTICLE:
-      return { ...state, entries: [...state.entries, action.article] };
+      return { ...state, entries: {...state.entries, ...action.article} };
     default:
       return state;
   }

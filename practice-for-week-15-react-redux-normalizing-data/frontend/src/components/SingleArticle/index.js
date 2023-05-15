@@ -3,12 +3,12 @@ import './SingleArticle.css';
 
 const SingleArticle = ({ articles }) => {
   const { id } = useParams();
+  const singleArticle = articles[id];
 
-  if(articles.length == 0) {
+  if(!singleArticle) {
     return null;
   }
-
-  const singleArticle = articles.find(article => article.id == id);
+  
   return (
     <div className='singleArticle'>
       <h1>{singleArticle.title}</h1>
