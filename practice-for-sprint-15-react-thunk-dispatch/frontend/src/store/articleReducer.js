@@ -30,8 +30,9 @@ export const writeArticle = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const article = await response.json();
-    dispatch(addArticle(article));
-    return article;
+    return dispatch(addArticle(article));
+  } else {
+    return Promise.reject(response)
   }
 };
 
