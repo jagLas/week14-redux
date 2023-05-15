@@ -17,8 +17,8 @@ The API for the backend is also documented in that repository's README.
 Once you have the backend up and running, clone the frontend starter from the
 `Download` link at the bottom of this page.
 
-Run `npm start` in the frontend starter repo to start your frontend
-development server.
+Run `npm start` in the frontend starter repo to start your frontend development
+server.
 
 ### Explore the reference application
 
@@ -51,12 +51,12 @@ In this project, you will run two servers using these addresses:
 In the `package.json` file on your frontend, notice the
 `"proxy": "http://localhost:5000"`. This line tells the development server to
 proxy any unknown requests to your backend server port. So **you must always
-ensure that the `PORT` variable in your backend `.env` file has the same
-port number as the proxy setting in your frontend `package.json`**. Remember:
+ensure that the `PORT` variable in your backend __.env__ file has the same
+port number as the proxy setting in your frontend __package.json__**. Remember:
 this approach only works in development using `npm start`.
 
-You will make api calls from your frontend to your backend server. When making
-api calls to your backend, don't write out your base URL for every call.
+You will make API calls from your frontend to your backend server. When making
+API calls to your backend, don't write out your base URL for every call.
 Instead, write your fetch calls like this: `fetch('/api/pokemon')`.
 
 ## Phase 1: Dispatch thunk actions in `PokemonBrowser`
@@ -67,15 +67,13 @@ to test that your connected code is working before moving on to connect the
 next component.
 
 There is a thunk action creator made for you already in the
-`src/store/pokemon.js` file called `getPokemon`. The thunk action it returns
-fetches all the Pokemon as a list from the `GET /api/pokemon` backend API
-route. Then it dispatches the action returned from the `load` action creator in
-the same file. The reducer normalizes the Pokemon data.
+__src/store/pokemon.js__ file called `getPokemon`. The thunk action it returns
+fetches all the Pokemon as a list from the `GET /api/pokemon` backend API route.
+Then it dispatches the action returned from the `load` action creator in the
+same file. The reducer normalizes the Pokemon data.
 
 Dispatch the thunk action returned from the `getPokemon` thunk action creator
 after the `PokemonBrowser` component first renders.
 
 If done correctly, you should see the list of all the Pokemon in the side of the
 browser.
-
-[try-catch]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await#adding_error_handling

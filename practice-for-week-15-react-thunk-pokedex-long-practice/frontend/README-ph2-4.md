@@ -1,3 +1,8 @@
+# Pokedex Thunk, Phases 2-4
+
+In Phases 2-4, you will create and dispatch thunk actions for `PokemonDetail`
+(Phase 2), `CreatePokemonForm` (Phase 3), and `EditPokemonForm` (Phase 4).
+
 ## Phase 2: Create and dispatch a thunk action for `PokemonDetail`
 
 Create a thunk action creator for fetching a single Pokemon's details based on
@@ -31,5 +36,3 @@ updated information Pokemon to the Redux store by dispatching the
 
 Dispatch the thunk action you just created on the submission of the
 `EditPokemonForm`.
-
-[try-catch]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await#adding_error_handling
