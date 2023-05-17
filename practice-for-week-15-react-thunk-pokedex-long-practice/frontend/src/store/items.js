@@ -30,8 +30,21 @@ export const getItem = (id) => async dispatch => {
 
   if (response.ok) {
     const items = await response.json();
-    console.log(items)
     dispatch(load(items, id))
+  }
+}
+
+export const updateItem = (payload) => async dispatch => {
+  const response = await fetch(`/api/items/${payload.id}`, {
+    method: 'PUT',
+    headers: {'Content-type': 'application/json'},
+    body: JSON.stringify(payload)
+  });
+
+  if(response.ok) {
+    const updatedItem = await response.json();
+    dispatch(update(updatedItem));
+    return updatedItem;
   }
 }
 
